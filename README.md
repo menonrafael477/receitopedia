@@ -1,2 +1,2 @@
-# receitopedia
-Projeto Receitopédia
+# Receitopédia
+
