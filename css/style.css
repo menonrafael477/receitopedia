@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Geist+Mono:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(140, 0, 0);
+    height: 7%;
+    /* border-bottom: 1px solid white; */
+}
+
+#logo {
+    display: flex; 
+    align-items: center;
+    margin: 10px 0px 7px 50px;
+    text-decoration: none;
+}
+
+#logo img {
+    width: 40px;
+}
+
+#logo #receitopedia {
+    font-size: 33px;
+    font-family: "Cal Sans";
+    font-weight: 500;
+    color: white; 
+}
+
+#search-container {
+    position: relative;
+    display: flex;
+    width: 35%;
+    border-radius: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+
+#search-bar {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    padding-left: 30px;
+}
+
+#search-bar:focus {
+    border: none;   
+}
+
+#search-bar::placeholder {
+    font-family: "Inter";
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+#search-icon {
+    position: absolute;
+    left: 94%;
+    top: 30%;
+    width: 18px;
+    opacity: 0.6;
+}
+
+#search-icon:hover {
+    cursor: pointer;
+}
+
+#header-options {
+    display: flex;
+    justify-content: space-around;
+    width: 15%;
+    margin-top: 17px;
+    font-style: none;
+    list-style-type: none;
+    cursor: default;
+}
+
+#header-options li a {
+    text-decoration: none;
+    color: white;
+    width: 100%;
+} 
+
+#header-options li a .main-text {
+    font-size: 18px;
+    font-family: "Inter";
+    font-weight: bold;
+}
+
+#header-options li a .main-text:hover {
+    cursor: pointer;
+}
+
+#header-options li a p {
+    font-size: 12px;
+    font-family: "Inter";
+    font-weight: regular;
+    color: white; 
+}
+
+#header-options li a .secondary-text:hover {
+    text-decoration: underline;
+}
+
+#header-options li a img {
+    filter: invert();
+    margin-right: 5px;
+}
+
+#header-options li a #icon-un {
+    width: 16px;
+}

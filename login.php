@@ -10,14 +10,20 @@
     <title>Receitopédia</title>
     <link rel="icon" type="image/x-icon" href="images/header/logo.png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <header>
         <?php
             require("views/header.view.php");
-
-            //var_dump($_SESSION);
-        ?>
+         ?>
     </header>
+
+    <main>  
+         <?php
+            require("controllers/login.controller.php");
+         ?>            
+    </main>  
 </body>
 </html>
+
