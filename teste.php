@@ -1,6 +1,6 @@
 <?php
 
-    require('config/db.php');
+    //require('config/db.php');
 
     $nome  = 'Gabriel Capri';
     $email = 'Gabriel@gmail.com';

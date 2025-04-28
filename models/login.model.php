@@ -1,11 +1,12 @@
 <?php
-    require('config/db.php');
 
     # ========= Funções disponíveis ================= #
     # Login
     # Logoff
     # Verificar Token
     # =============================================== #
+
+    require('config/db.php');
 
     function gerar_token() : string{
         return bin2hex(random_bytes(32));
@@ -23,18 +24,6 @@
             throw new Exception("Não foi possível inserir token no banco de dados, falha no login.");
         }
     } 
-    
-    function remover_token($banco_de_dados, $id_usuario) {
-        try {
-            $statement = $banco_de_dados->prepare(
-                "DELETE FROM sessions WHERE id_usuario = ?"
-            );
-            $statement->bind_param("i", $id_usuario);
-            $statement->execute();
-        } catch (Exception $erro) {
-            throw new Exception("Não foi possível remover o token do banco de dados, falha no logoff.");
-        }
-    }
 
     function verificar_admin($email, $senha) : bool{
         if ($email == "admin@gmail.com" && $senha == "admin") {
@@ -47,7 +36,7 @@
         $banco_de_dados = BancoDeDados::get_banco_de_dados();
     
         try {
-            $statement = $banco_de_dados->prepare("SELECT id_usuario FROM token_sessao WHERE id_usuario = ?");
+            $statement = $banco_de_dados->prepare("SELECT id_usuario FROM sessions WHERE token_sessao = ?");
             $statement->bind_param("s", $token);
             $statement->execute();
             $resultado = $statement->get_result();
@@ -58,7 +47,7 @@
         }
     }
 
-    function login($email, $senha): string {
+    function login($email, $senha, $token): string {
         if (verificar_admin($email, $senha)) {
             return "admin";
         }
@@ -70,22 +59,50 @@
         $resultado = $statement->get_result();
     
         if ($resultado && $resultado->num_rows > 0) {
-            $token = gerar_token();
             $row   = $resultado->fetch_assoc();
             $id    = $row['id'];
             inserir_token($banco_de_dados, $id, $token);
 
-            $_SESSION['id'] = $id;
-            return $token;
+            $_SESSION['logado'] = true;
+            return "user";
         }
     
         throw new Exception("Usuário ou senhas incorretos, falha no login");
     }
 
-    function logoff($id_usuario) : int {
+    function get_usuario_por_token($token) : Usuario {
+        require('classes/usuario.class.model.php');
+
         $banco_de_dados = BancoDeDados::get_banco_de_dados();
-        remover_token($banco_de_dados, $id_usuario);
-        return 1;
+        $resultado = null;
+        try {
+            $statement = $banco_de_dados->prepare("SELECT id_usuario FROM sessions WHERE token_sessao = ?");
+            $statement->bind_param("s", $token);
+            $statement->execute();
+            $resultado = $statement->get_result();
+            
+        } catch (Exception $erro) {
+            throw new Exception("Não foi possível verificar o token de acesso, falha na verificação.");
+        }
+
+        if ($resultado && $resultado->num_rows > 0){
+            $row   = $resultado->fetch_assoc();
+            $id_usuario    = $row['id_usuario'];
+            
+            $statement = $banco_de_dados->prepare("SELECT nome, email FROM usuario WHERE id = ?");
+            $statement->bind_param("i", $id_usuario);
+            $statement->execute();
+            $resultado = $statement->get_result();
+            $row = $resultado->fetch_assoc();
+
+            if ($resultado && $resultado->num_rows > 0) {
+                return new Usuario($id_usuario, $row['nome'], $row['email']);
+            }
+
+            throw new Exception("Esse usuário existe?");
+        }
+
+        throw new Exception("Esse token não está registrado");
     }
 
 ?>

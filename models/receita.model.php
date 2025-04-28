@@ -1,7 +1,6 @@
 <?php
 
-    require("config/db.php");
-    require("classes/receita.receita.class.model.php");
+    require("classes/receita.class.model.php");
 
     function get_receita(int $id_post): Receita {
         $banco_de_dados = BancoDeDados::get_banco_de_dados();
@@ -15,7 +14,6 @@
         throw new Exception("Não foi possível encontrar nenhuma receita com esse id.");
     }
     
-
     function criar_receita(string $titulo_receita, string $texto_receita, string $foto_receita, string $categoria): bool {
         $banco_de_dados = BancoDeDados::get_banco_de_dados();
         $statement = $banco_de_dados->prepare("INSERT INTO receita (titulo_receita, texto_receita, foto_receita, categoria, likes, dislikes) VALUES (?, ?, ?, ?, 0, 0)");

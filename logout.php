@@ -1,9 +1,6 @@
 <?php
-
     session_start();
-    unset($_SESSION['id']);
-    session_destroy();
+    $_SESSION['logado'] = false;
     header("location: index.php");
     exit; 
-
 ?>

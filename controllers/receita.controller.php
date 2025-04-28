@@ -125,28 +125,5 @@ class ReceitaController {
     }
 }
 
-$controller = new ReceitaController();
 
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-
-    switch ($action) {
-        case 'get':
-            echo $controller->getReceita();
-            break;
-        case 'create':
-            echo json_encode($controller->criarReceita());
-            break;
-        case 'update':
-            echo json_encode($controller->atualizarReceita());
-            break;
-        case 'delete':
-            echo json_encode($controller->excluirReceita());
-            break;
-        default:
-            echo json_encode(['status' => 'error', 'message' => 'Ação inválida.']);
-    }
-} else {
-    echo json_encode(['status' => 'error', 'message' => 'Ação não especificada.']);
-}
 ?>

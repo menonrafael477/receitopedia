@@ -79,8 +79,6 @@ header {
 }
 
 #header-options {
-    display: flex;
-    justify-content: space-around;
     width: 15%;
     margin-top: 17px;
     font-style: none;

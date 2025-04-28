@@ -8,6 +8,6 @@
         <label class="label" for="senha">Senha</label> </div>
     <div>
         <input class="input" type="password" name="senha" id="senha" required> </div>
-    <button>FAZER LOGIN</button>
-    <a href="">Ainda não possui conta?</a>
+    <button type="submit">FAZER LOGIN</button>
+    <a href="cadastro.php">Ainda não possui conta?</a>
 </form>

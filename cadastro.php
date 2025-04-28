@@ -20,11 +20,9 @@
     </header>
 
     <main>  
-         <?php
-            require("controllers/eventlistener.controller.php");
-            var_dump($_SESSION);       
-         ?>  
-           
+        <?php
+            require("controllers/usuario.controller.php");
+        ?>
     </main>  
 </body>
 </html>

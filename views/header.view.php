@@ -1,4 +1,4 @@
-<?php if(!isset($_SESSION['id'])) : ?>
+<?php if($_SESSION['logado'] == false) : ?>
     <a href="index.php" id="logo">
         <img src="images/header/logo.png" alt="Logo">
         <h1 id="receitopedia">Receitopédia</h1>         
@@ -15,7 +15,7 @@
 
     <?php else : ?>
 
-    <a href="index.php" id="logo">
+    <a href="" id="logo">
         <img src="images/header/logo.png" alt="Logo">
         <h1 id="receitopedia">Receitopédia</h1>         
     </a>  
@@ -26,6 +26,7 @@
     </div>
 
     <ul id="header-options">
-        <li><a href=""><p class="main-text"><img id="icon-un" src="images/header/user-solid.svg" alt="LOGIN">CONTA</p></a><a href=""><a href="logout.php"><p class="secondary-text">sair</p></a></li>
-    </ul>
+        <li><a href=""><p class="main-text"><img id="icon-un" src="images/header/user-solid.svg" alt="LOGIN">CONTA</p></a><a href=""><form action="logout.php?action=logout" method="POST">
+        <button type="submit" class="secondary-text" style="background:none; border:none; padding:0; margin:0;cursor:pointer;">sair</button></form>
+    </ul> 
 <?php endif; ?>

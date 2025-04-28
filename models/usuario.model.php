@@ -1,7 +1,5 @@
 <?php
 
-    require('config/db.php');
-
     # ========= Funções disponíveis ================= #
     # Cadastrar usuarios
     # Excluir usuarios
