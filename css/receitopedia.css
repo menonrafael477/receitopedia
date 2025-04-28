@@ -1,0 +1,40 @@
+.container-imagens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.item-imagem {
+    width: calc(33.33% - 10px); /* Para três colunas em telas maiores */
+    margin-bottom: 20px;
+    text-align: center;
+}
+/* Estilos para telas menores (até 600px de largura) */
+@media (max-width: 600px) {
+    .item-imagem {
+        width: calc(50% - 10px); /* Duas colunas em telas menores */
+    }
+}
+/* Estilos para telas ainda menores (até 400px de largura) */
+@media (max-width: 400px) {
+    .item-imagem {
+        width: 100%; /* Uma coluna em telas muito pequenas */
+    }
+}
+.item-imagem img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.item-imagem a {
+    text-decoration: none;
+    color: black;
+}
+.titulo-imagem {
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

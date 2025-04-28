@@ -44,4 +44,23 @@
         return $statement->affected_rows > 0;
     }
 
+    function buscar_comentarios_por_receita(int $id_receita): array {
+        $banco_de_dados = BancoDeDados::get_banco_de_dados();
+        $statement = $banco_de_dados->prepare("
+            SELECT c.texto_comentario, u.nome AS nome_usuario
+            FROM comentarios c
+            JOIN usuario u ON c.id_usuario = u.id
+            WHERE c.id_receita = ?
+            ORDER BY c.data_criacao DESC
+        ");
+        $statement->bind_param("i", $id_receita);
+        $statement->execute();
+        $resultado = $statement->get_result();
+        $comentarios = [];
+        while ($row = $resultado->fetch_assoc()) {
+            $comentarios[] = $row;
+        }
+        return $comentarios;
+    }
+
 ?>

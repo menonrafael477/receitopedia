@@ -59,7 +59,7 @@ function pesquisar_por_nome($nome) : array {
     }
 }
 
-function get_todas_receitas() : array{
+function pegar_todas_receitas() : array{
     $banco_de_dados = BancoDeDados::get_banco_de_dados();
     $resultados = [];
 

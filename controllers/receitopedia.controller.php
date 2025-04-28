@@ -5,14 +5,13 @@ require('views/receitopedia.view.php');
 class ReceitopediaController {
 
     public function exibirReceitas() {
-        // $receitas = get_todas_receitas();
-    
-        //$view = new ReceitopediaView();
-        // $view->renderizar($receitas);
+        $receitas = pegar_todas_receitas();
+
+        $view = new ReceitopediaView();
+        $view->renderizar($receitas);
     }
 }
 
 $controller = new ReceitopediaController();
-    
 $controller->exibirReceitas();
 ?>
