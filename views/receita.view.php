@@ -8,18 +8,37 @@
 </head>
 <body>
     <div class="container">
+        <div class="nav-receita">
+            <a href="eventlistener.controller.php?action=listar_receitas" class="btn-voltar">
+                ← Todas as receitas
+            </a>
+
+        </div>
         <h1><?php echo $receita->getTituloReceita(); ?></h1>
+
+        <?php if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] === $receita->getAutorId()): ?>
+        <div class="acoes-receita">
+            <a href="receita.controller.php?action=editar&id=<?= $receita->getIdReceita() ?>" class="btn-editar">
+            ✏️ Editar
+            </a>
+            <form action="receita.controller.php?action=excluir" method="POST" onsubmit="return confirm('Deseja mesmo excluir esta receita?');" style="display:inline">
+            <input type="hidden" name="id_receita" value="<?= $receita->getIdReceita() ?>">
+            <button type="submit" class="btn-excluir">🗑️ Excluir</button>
+            </form>
+        </div>
+        <?php endif; ?>
+
         <img src="<?php echo $receita->getFotoReceita(); ?>" alt="<?php echo $receita->getTituloReceita(); ?>" class="imagem-receita">
         <div class="descricao-receita">
             <?php echo nl2br($receita->getTextoReceita()); ?>
         </div>
         <div class="comentarios-likes">
-            <div class="likes">
-                👍 <span id="likes-count"><?php echo $receita->getLikes(); ?></span>
-            </div>
-            <div class="dislikes">
-                👎 <span id="dislikes-count"><?php echo $receita->getDislikes(); ?></span>
-            </div>
+            <button id="btn-like" class="likes" aria-label="Curtir receita">
+                👍 <span id="likes-count"><?= $receita->getLikes() ?></span>
+            </button>
+            <button id="btn-dislike" class="dislikes" aria-label="Descurtir receita">
+                👎 <span id="dislikes-count"><?= $receita->getDislikes() ?></span>
+            </button>
         </div>
 
         <div class="secao-comentarios">

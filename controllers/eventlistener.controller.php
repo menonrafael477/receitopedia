@@ -1,18 +1,22 @@
 <?php
     var_dump($_GET);
     //require('views/login.view.php');
-    require('login.controller.php');
     //require('models/login.model.php');
-    #require('usuario.controller.php');
+
     require('logout.controller.php');
     #require('avaliacao.controller.php');
     #require('comentario.controller.php');
+    #require('like.controller.php');
+    require('login.controller.php');
+    #require('logout.controller.php');
     #require('receita.controller.php');
-    #require('receitopedia.controller.php');
+    require('receitopedia.controller.php');//mudei
     #require('session.controller.php');
-    
+    #require('usuario.controller.php');
+
   
     $login_controller_event = new LoginController();
+    $receitopedia_controller_event = new ReceitopediaController();//mudei
     #$logout_controller_event = new LogoutController();
     #$receita_controller_event = new ReceitaController();
     #$session_controller_event = new SessionController();
@@ -63,7 +67,11 @@
             case 'excluir_usuario':
                 #$usuario_controller_event->excluirUsuario();
                 return (['status' => 'error', 'message' => "Excluir usuario: '$action'"]);
-            
+            case 'listar_receitas':
+                // aqui você chama o método que carrega todas as receitas
+                // por exemplo:
+                $receitopedia_controller_event->listarReceitas();
+                exit; // interrompe o fluxo para não cair no default
             # Default
             default:
                 echo json_encode(['status' => 'error', 'message' => "Falha catastrofica: '$action'"]);

@@ -8,6 +8,16 @@
 </head>
 <body>
     <h1>Receitas Deliciosas</h1>
+
+    <!-- CONTROLE DE AÇÕES (por ex. Nova Receita) -->
+    <?php if (isset($_SESSION['id_usuario'])): ?>
+        <div class="acoes-listagem">
+            <a href="receita.controller.php?action=criar" class="btn-nova-receita">
+                ➕ Nova Receita
+            </a>
+        </div>
+    <?php endif; ?>
+
     <section class="container-imagens">
         <?php if (!empty($this->receitas)): ?>
             <?php foreach ($this->receitas as $receita): ?>
@@ -23,6 +33,7 @@
         <?php endif; ?>
     </section>
 </body>
+
 </html>
 
 <?php
