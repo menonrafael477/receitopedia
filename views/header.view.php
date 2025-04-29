@@ -1,3 +1,12 @@
+<?php 
+
+require('controllers/logout.controller.php');
+require('controllers/session.controller.php');
+
+$session_controller = new SessionController();
+
+?>
+
 <?php if($_SESSION['logado'] == false) : ?>
     <a href="index.php" id="logo">
         <img src="images/header/logo.png" alt="Logo">
@@ -15,7 +24,7 @@
 
     <?php else : ?>
 
-    <a href="" id="logo">
+    <a href="index.php" id="logo">
         <img src="images/header/logo.png" alt="Logo">
         <h1 id="receitopedia">Receitopédia</h1>         
     </a>  
@@ -25,8 +34,19 @@
         <img id="search-icon" src="images/header/magnifying-glass-solid.svg" alt="Search Icon">
     </div>
 
+
     <ul id="header-options">
-        <li><a href=""><p class="main-text"><img id="icon-un" src="images/header/user-solid.svg" alt="LOGIN">CONTA</p></a><a href=""><form action="logout.php?action=logout" method="POST">
-        <button type="submit" class="secondary-text" style="background:none; border:none; padding:0; margin:0;cursor:pointer;">sair</button></form>
+        <li>
+            <a>
+                <p class="main-text-logged">
+                    <img id="icon-un" src="images/header/user-solid.svg" alt="LOGIN">
+                    <?php echo strtoupper($_SESSION['nome_usuario']); ?>
+    
+                </p>
+            </a>
+            <form action="index.php?action_logoff=logoff" method="POST">
+            <button type="submit" id="logout-button">sair</button></form>
+        </li>
     </ul> 
 <?php endif; ?>
+

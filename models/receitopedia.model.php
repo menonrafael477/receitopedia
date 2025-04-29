@@ -7,6 +7,7 @@
     # =============================================== #
 
 require("classes/receita.class.model.php");
+require('config/db.php');
 
 function criar_array($result) : array {
     $resultados = [];

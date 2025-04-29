@@ -21,7 +21,7 @@
 
     <main>  
         <?php
-            require("controllers/usuario.controller.php");
+            require("controllers/cadastro.controller.php");
         ?>
     </main>  
 </body>

@@ -121,3 +121,27 @@ header {
 #header-options li a #icon-un {
     width: 16px;
 }
+
+/* logado */
+
+#header-options li a .main-text-logged {
+    font-size: 18px;
+    font-family: "Inter";
+    font-weight: bold;
+}
+
+#logout-button {
+    display: block;
+    background-color: none; 
+    border: none; 
+    padding: 0; 
+    margin: 0; 
+    outline: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 12px;
+    font-family: "Inter";
+    color: white;
+    background-color:transparent;
+    margin-bottom: 10px;
+}

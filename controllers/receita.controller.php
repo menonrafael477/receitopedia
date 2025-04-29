@@ -1,129 +1,67 @@
 <?php
 
-require('models/receita.model.php');
+//require('views/receita.view.php');
+require("views/admin-panel-view.php"); 
 
 class ReceitaController {
 
-    public function getReceita() {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $id_post = $_GET['id_post'] ?? null;
+    public function criar_receita(){
+        require('models/receita.model.php');
 
-            if ($id_post === null) {
-                return (['status' => 'error', 'message' => 'ID da receita não informado.']);
-            }
-
-            try {
-                $receita = get_receita((int)$id_post);
-
-                return json_encode ([
-                    'status' => 'success',
-                    'data' => [
-                        'id_post' => $receita->getId(),
-                        'titulo_receita' => $receita->getTituloReceita(),
-                        'texto_receita' => $receita->getTextoReceita(),
-                        'foto_receita' => $receita->getFotoReceita(),
-                        'categoria' => $receita->getCategoria(),
-                        'likes' => $receita->getLikes(),
-                        'dislikes' => $receita->getDislikes()
-                    ]
-                ]);
-
-            } catch (Exception $e) {
-                return (['status' => 'error', 'message' => $e->getMessage()]);
-            }
-        } else {
-            return (['status' => 'error', 'message' => 'Método de requisição inválido.']);
-        }
-    }
-
-    public function criarReceita() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $dados = $_POST;
+            $titulo_receita = $_POST['titulo_receita'] ?? null;
+            $texto_receita = $_POST['texto_receita'] ?? null;
+            $foto_receita = $_POST['foto_receita'] ?? "none";
+            $categoria = $_POST['categoria'] ?? null;
 
-            $titulo = $dados['titulo_receita'] ?? '';
-            $texto = $dados['texto_receita'] ?? '';
-            $foto = $dados['foto_receita'] ?? '';
-            $categoria = $dados['categoria'] ?? '';
+            criar_receita($titulo_receita, $texto_receita, $foto_receita, $categoria);
 
-            if (empty($titulo) || empty($texto) || empty($categoria)) {
-                return (['status' => 'error', 'message' => 'Campos obrigatórios não informados.']);
-            }
-
-            try {
-                $sucesso = criar_receita($titulo, $texto, $foto, $categoria);
-
-                if ($sucesso) {
-                    return (['status' => 'success', 'message' => 'Receita criada com sucesso.']);
-                } else {
-                    return (['status' => 'error', 'message' => 'Falha ao criar a receita.']);
-                }
-
-            } catch (Exception $e) {
-                return (['status' => 'error', 'message' => $e->getMessage()]);
-            }
-
+           
         } else {
-            return (['status' => 'error', 'message' => 'Método de requisição inválido.']);
+            return(['status' => 'error', 'message' => 'Método de requisição inválido.']);
         }
     }
 
-    public function atualizarReceita() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $dados = $_POST;
+    public function get_receita() {
+        require('models/receita.model.php');
 
-            $id_post = $dados['id_post'] ?? null;
-            $titulo = $dados['titulo_receita'] ?? '';
-            $texto = $dados['texto_receita'] ?? '';
-            $categoria = $dados['categoria'] ?? '';
-
-            if (!$id_post || empty($titulo) || empty($texto) || empty($categoria)) {
-                return (['status' => 'error', 'message' => 'Campos obrigatórios não informados.']);
-            }
-
-            try {
-                $sucesso = atualizar_receita((int)$id_post, $titulo, $categoria, $texto);
-
-                if ($sucesso) {
-                    return (['status' => 'success', 'message' => 'Receita atualizada com sucesso.']);
-                } else {
-                    return (['status' => 'error', 'message' => 'Falha ao atualizar a receita.']);
-                }
-
-            } catch (Exception $e) {
-                return (['status' => 'error', 'message' => $e->getMessage()]);
-            }
-
-        } else {
-            return (['status' => 'error', 'message' => 'Método de requisição inválido.']);
-        }
-    }
-
-    public function excluirReceita() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_post = $_POST['id_post'] ?? null;
 
-            if ($id_post === null) {
-                return (['status' => 'error', 'message' => 'ID da receita não informado.']);
+            if ($id_post) {
+                return get_receita($id_post);
+            } else {
+                return(['status' => 'error', 'message' => 'ID da receita não fornecido.']);
             }
-
-            try {
-                $sucesso = excluir_receita((int)$id_post);
-
-                if ($sucesso) {
-                    return (['status' => 'success', 'message' => 'Receita excluída com sucesso.']);
-                } else {
-                    return (['status' => 'error', 'message' => 'Falha ao excluir a receita.']);
-                }
-
-            } catch (Exception $e) {
-                return (['status' => 'error', 'message' => $e->getMessage()]);
-            }
-
         } else {
-            return (['status' => 'error', 'message' => 'Método de requisição inválido.']);
+            return(['status' => 'error', 'message' => 'Método de requisição inválido.']);
         }
     }
 }
 
+$receita_controller = new ReceitaController();
+
+if(isset($_GET['action_receita'])) {
+    $action = $_GET['action_receita'];
+    
+    echo json_encode("usuario realizou acao na aba receita");
+    
+    switch ($action) {
+
+        case 'criar':
+            $receita_controller->criar_receita();
+            break;
+
+        case 'editar':
+            $receita_controller->get_receita();
+            break;
+
+        default:
+            echo json_encode(['status' => 'error', 'message' => "Falha catastrofica: '$action'"]);
+    }
+
+    } else {
+    return (['status' => 'error', 'message' => 'Acao nao definida']);
+}
 
 ?>

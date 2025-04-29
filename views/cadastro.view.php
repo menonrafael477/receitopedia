@@ -1,5 +1,5 @@
 <h1>Cadastro de Usuário</h1>
-<form action="cadastro.php?action=cadastro" method="POST">
+<form action="cadastro.php?action_cadastro=cadastro" method="POST">
     <div>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>

@@ -1,25 +1,21 @@
 <?php
 
-    //require_once('models/login.model.php');
-
     class SessionController { 
         public function session_verify() {
-            $usuario = null;
-
             try {
+                require('models/login.model.php');
+                $usuario = null;
+    
                 $usuario = get_usuario_por_token(session_id());
-            } catch (Exception $erro){
-                echo "Nao foi possivel detectar login";
-            }
 
-            if ($usuario != null) {
-                echo "O usuario existe, logo posso me logar automaticamente";
-                
-                return;
+                return $usuario->get_id();
+            } catch (Exception $e) {
+                return(['status' => 'error', 'message' => $e->getMessage()]);
             }
-
-            echo "Nao foi possível detectar o login, usuário nao existe";
+           
         }
+
+        
 
     }
 

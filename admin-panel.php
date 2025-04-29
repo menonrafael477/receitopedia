@@ -1,4 +1,4 @@
-<?php 
+<?php
     session_start();
 ?>
 
@@ -10,22 +10,20 @@
     <title>Receitopédia</title>
     <link rel="icon" type="image/x-icon" href="images/header/logo.png">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/admin-panel.css">
+    <link rel="stylesheet" href="css/receita-admin.css">
 </head>
 <body>
     <header>
         <?php
             require("views/header.view.php");
-         ?>
+            //var_dump($_SESSION);
+        ?>
     </header>
 
-    <main>  
-         <?php
-            require("controllers/login.controller.php");
-            //var_dump($_SESSION);       
-         ?>  
-           
-    </main>  
+    <main>
+        <?php require("controllers/receita.controller.php"); ?>
+    </main>
 </body>
 </html>
 

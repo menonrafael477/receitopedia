@@ -1,10 +1,6 @@
 <?php
     session_start();
     //include("controllers/session.controller.php");
-    require("controllers/receitopedia.controller.php");
-
-    $receitaController = new ReceitopediaController();
-    $receitaController->exibirReceitas();
 ?>
 
 <!DOCTYPE html>
@@ -20,18 +16,14 @@
     <header>
         <?php
             require("views/header.view.php");
-
-
-            var_dump($_SESSION);
+            //var_dump($_SESSION);
         ?>
     </header>
 
-    <?php
-        // A saída do método exibirReceitas() será renderizada aqui então não mecham nisso
-    ?>
-
-    <form action="index.php?action=logout" method="POST">
-        <button type="submit">Session</button>
-    </form>
+    <main>
+        <?php
+            require("controllers/receitopedia.controller.php");
+        ?>
+    </main>
 </body>
 </html>

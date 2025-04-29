@@ -13,7 +13,14 @@ function remover_token($banco_de_dados, $id_usuario) {
 }
 
 function logoff($id_usuario) : int {
+
     $banco_de_dados = BancoDeDados::get_banco_de_dados();
     remover_token($banco_de_dados, $id_usuario);
     return 1;
+}
+
+function reset_page() : int {
+    $_SESSION['logado'] = false;
+    header("location: index.php");
+    exit; 
 }

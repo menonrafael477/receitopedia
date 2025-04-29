@@ -1,0 +1,49 @@
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,          
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL                  
+);
+
+CREATE TABLE receita (
+    id INT AUTO_INCREMENT PRIMARY KEY,          
+    likes INT NOT NULL DEFAULT 0,               
+    dislikes INT NOT NULL DEFAULT 0,
+    categoria VARCHAR(50) NOT NULL,
+    titulo_receita VARCHAR(255) NOT NULL,
+    texto_receita TEXT NOT NULL,
+    foto_receita VARCHAR(255)                   
+);
+
+CREATE TABLE comentarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,          
+    id_receita INT NOT NULL,
+    id_usuario INT NOT NULL,                    
+    texto_comentario TEXT NOT NULL,
+
+    FOREIGN KEY (id_receita) REFERENCES receita(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id) ON DELETE CASCADE 
+);
+
+CREATE TABLE usuario_like (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_receita INT NOT NULL,
+    id_usuario INT NOT NULL,
+    like_valor SMALLINT NOT NULL,               
+    CONSTRAINT chk_like_valor CHECK (like_valor IN (-1, 0, 1)),
+    FOREIGN KEY (id_receita) REFERENCES receita(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
+    UNIQUE KEY uk_user_recipe_like (id_usuario, id_receita)
+
+);
+CREATE TABLE sessions (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	id_usuario INT NOT NULL,
+	token_sessao TEXT NOT NULL UNIQUE,
+	admin BOOLEAN NOT NULL DEFAULT FALSE;
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id) ON DELETE CASCADE
+)
+
+CREATE INDEX idx_receita_categoria ON receita(categoria);
+CREATE INDEX idx_comentarios_receita ON comentarios(id_receita);
+CREATE INDEX idx_comentarios_usuario ON comentarios(id_usuario);

@@ -1,0 +1,62 @@
+# Sistema de Culinária - Receitopédia
+
+# O que o sistema faz?
+
+A Receitopédia é uma página web que permite aos usuários visualizar diferentes receitas e opinar. Na página inicial há diversos tipos de receitas e suas avaliações, o site mostra o nome da receita e a foto da receita; existe também uma barra de pesquisa que permite ao usuário pesquisar receitas por nome e categoria. O usuário pode criar uma conta, entrar na página da receita e deixar sua avaliação, na página há um botão de gostei e outro de não gostei e um campo para comentários.
+
+ 
+
+Relato de um usuário: Ao entrar na Receitopédia, deparei-me com diversas receitas, elas estavam delimitadas na tela por áreas quadráticas, dentro de cada área havia a foto e o nome da receita, no meio das várias receitas havia a barra de pesquisa da página, onde se pode pesquisar receitas de acordo com o nome e categoria. Acima de tudo havia a barra principal, com o nome do site e os botões de cadastro/login. 
+
+Quando cliquei em uma receita, fui para a sua página, nesta página havia o nome da receita, foto e categoria. Abaixo havia as avaliações e o campo dos comentários, cada usuário pode deixar sua avaliação e seus comentários dizendo o que pensa sobre a receita.
+
+# O que é preciso?
+
+- Sistema de cadastro
+- Sistema de login
+
+- Existem 2 tipos de usuários: Usuário e Admin
+- Existe um login pré-feito especial para o Admin
+
+- Permitir cadastro de novas receitas por parte do Admin
+- Mostrar as receitas para o usuário
+- Permite mostrar por categoria
+- Permite avaliação e sessão de comentários por receita
+
+- Permite ao administrador cadastrar novas receitas
+- Permite ao administrador Apagar novas receitas
+- Permite o administrador Apagar comentários.
+
+# Telas
+
+- Tela de cadastro
+- Tela de login
+- Tela do administrador (Permite ter um CRUDE das receitas e permite apagar comentários)
+- Tela do usuário (Mostra todas as receitas)
+- Tela da receita (Mostra a receita) (Permite ter um CRUDE de comentário) (Permite ter like ou dislike)
+
+# Arquivos
+
+- index.html
+- usuario.php
+- receita.php
+
+# SQL
+
+### tabela receita
+
+id, likes, dislikes, categoria, texto_receita, foto_receita
+
+### tabela comentários
+
+id, id_receita, texto_comentario
+
+### tabela usuario_like
+
+id, id_receita, id_usuario,  like (1 = like, 0 = nada, -1 = dislike)
+
+### tabela usuario
+
+id, nome, email, senha
+
+### Código SQL para PGADMIN

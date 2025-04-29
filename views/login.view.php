@@ -1,4 +1,4 @@
-<form action="login.php?action=login" method="POST">
+<form action="login.php?action_login=login" method="POST">
     <h2>ACESSE A SUA CONTA</h2>
     <div class="div-label">
         <label class="label" for="email">E-mail</label> </div>

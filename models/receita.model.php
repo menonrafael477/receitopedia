@@ -1,6 +1,7 @@
 <?php
 
-    require("classes/receita.class.model.php");
+    //require("config/db.php");
+    //require("classes/receita.class.model.php");
 
     function get_receita(int $id_post): Receita {
         $banco_de_dados = BancoDeDados::get_banco_de_dados();
@@ -15,6 +16,11 @@
     }
     
     function criar_receita(string $titulo_receita, string $texto_receita, string $foto_receita, string $categoria): bool {
+
+        // if ($titulo_receita == null || $texto_receita == null || $foto_receita == null || $categoria = null){
+        //     throw new Exception("Para criar uma receita nenhuma variável pode ser nula! Variáveis: titulo_receita '$titulo_receita', texto_receita '$texto_receita', foto_receita '$foto_receita', categoria '$categoria'");
+        // }
+
         $banco_de_dados = BancoDeDados::get_banco_de_dados();
         $statement = $banco_de_dados->prepare("INSERT INTO receita (titulo_receita, texto_receita, foto_receita, categoria, likes, dislikes) VALUES (?, ?, ?, ?, 0, 0)");
         $statement->bind_param("ssss", $titulo_receita, $texto_receita, $foto_receita, $categoria);
@@ -22,7 +28,7 @@
 
         return $statement->affected_rows > 0;
     }
-
+    
     function atualizar_receita(int $id_post, string $titulo, string $categoria, string $texto): bool {
         $banco_de_dados = BancoDeDados::get_banco_de_dados();
         $statement = $banco_de_dados->prepare("UPDATE receita SET titulo_receita = ?, texto_receita = ?, categoria = ? WHERE id_post = ?");

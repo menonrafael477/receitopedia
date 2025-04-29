@@ -1,0 +1,231 @@
+/* Reset básico e Box Sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    padding: 0px;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+}
+
+.container {
+    display: flex;
+    gap: 20px; /* Espaço entre coluna esquerda e direita */
+    max-width: 1200px; /* Largura máxima opcional */
+    margin: 80px auto; /* Centralizar container */
+    min-height: 70vh; /* Altura mínima para visualização */
+}
+
+/* Painéis Gerais */
+.panel {
+    border: 1px solid #000;
+    background-color: #fff; /* Fundo branco para os painéis */
+    display: flex; /* Facilita organização interna */
+    flex-direction: column; /* Empilha header e content */
+}
+
+/* Coluna Esquerda */
+.left-panel {
+    flex: 2; /* Ocupa 2/3 do espaço flexível */
+}
+
+/* Coluna Direita */
+.right-column {
+    flex: 1; /* Ocupa 1/3 do espaço flexível */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre painel superior e inferior direito */
+}
+
+/* Painéis da Coluna Direita */
+.top-right-panel,
+.bottom-right-panel {
+    flex: 1; /* Divide o espaço vertical da coluna direita igualmente */
+}
+
+/* Cabeçalho do Painel Esquerdo */
+.panel-header {
+    display: flex;
+    justify-content: space-between; /* Espaça os itens id, titulo, X */
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    background-color: #eee; /* Fundo levemente diferente para o header */
+}
+
+.panel-header span:first-child { flex: 0.2; } /* ID menor */
+.panel-header span:last-child { flex: 1.5; } /* X menor e à direita */
+
+/* Conteúdo dos Painéis */
+.panel-content {
+    padding: 15px;
+    flex-grow: 1; /* Ocupa o espaço restante no painel */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
+}
+
+/* Estilos para itens da lista (exemplo) */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
+}
+.list-item span { flex: 1; }
+.list-item span:first-child { flex: 0.2; }
+.list-item span:last-child { flex: 0.1; text-align: right; }
+.list-item a { color: red; text-decoration: none; }
+
+/* Títulos dentro dos painéis */
+.panel h2 {
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border-bottom: 1px solid #eee; /* Linha abaixo do título do form */
+    margin-bottom: 10px;
+}
+
+/* Estilos para Formulários (opcional, para melhorar aparência) */
+label {
+    display: inline-block; /* Ou block se preferir label acima */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 95%; /* Ocupa quase toda a largura do container */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+textarea {
+    resize: vertical; /* Permite redimensionar só verticalmente */
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    background-color: #5cb85c; /* Verde */
+    color: white;
+}
+button[type="reset"],
+button[type="button"] {
+    background-color: #f0ad4e; /* Laranja/Amarelo */
+    color: white;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.form-buttons {
+    margin-top: 15px;
+}
+
+/* Ajustes finos para o painel de edição (placeholders) */
+.bottom-right-panel .panel-content p:first-of-type {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* lista */
+
+/* --- Estilos para a Linha da Receita na Lista --- */
+
+.left-panel .panel-content {
+    /* Remove padding padrão se você quiser que as linhas ocupem toda a largura */
+    /* padding: 0;  */ /* Descomente se necessário */
+}
+
+.recipe-row {
+    display: flex;              /* Organiza os itens horizontalmente */
+    justify-content: space-between; /* Empurra ID/Título para esquerda, Ações para direita */
+    align-items: center;        /* Alinha verticalmente os itens no centro */
+    padding: 10px 15px;         /* Espaçamento interno da linha (ajuste conforme necessário) */
+    border-bottom: 1px solid #eee; /* Linha separadora fina entre as receitas */
+    transition: background-color 0.2s ease; /* Efeito suave ao passar o mouse */
+}
+
+.recipe-row:hover {
+    background-color: #f9f9f9; /* Cor de fundo suave ao passar o mouse */
+}
+
+/* Remove a borda inferior do último item da lista */
+.recipe-row:last-child {
+    border-bottom: none;
+}
+
+.recipe-id {
+    flex: 0 0 60px; /* Largura fixa para o ID (não cresce, não encolhe, base 60px) */
+    color: #555;        /* Cor mais suave para o ID */
+    font-size: 0.9em;
+    margin-right: 15px; /* Espaço entre ID e Título */
+    text-align: left;   /* Garante alinhamento à esquerda */
+}
+
+.recipe-title {
+    flex-grow: 1;         /* Permite que o título ocupe o espaço restante */
+    margin-right: 15px;   /* Espaço entre o título e os botões */
+    font-weight: 500;     /* Título ligeiramente mais destacado */
+    overflow: hidden;       /* Esconde o excesso de texto */
+    text-overflow: ellipsis;/* Adiciona "..." se o texto for muito longo */
+    white-space: nowrap;    /* Impede que o título quebre linha */
+    text-align: left;       /* Garante alinhamento à esquerda */
+}
+
+.recipe-actions {
+    display: flex;      /* Organiza os botões lado a lado */
+    gap: 8px;           /* Espaço entre os botões */
+    flex-shrink: 0;     /* Impede que a área dos botões encolha */
+}
+
+/* Estilo base comum para os botões/links de ação */
+.recipe-actions a,
+.recipe-actions button {
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-decoration: none; /* Remove sublinhado de links */
+    font-size: 0.85em;
+    cursor: pointer;
+    border: 1px solid transparent; /* Borda base */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap; /* Garante que o texto do botão não quebre */
+}
+
+/* Estilo Botão Editar */
+.btn-edit {
+    background-color: #e7f3ff; /* Azul claro */
+    border-color: #add3ff;
+    color: #0056b3;
+}
+.btn-edit:hover {
+    background-color: #cfe6ff;
+    border-color: #8bc1ff;
+    color: #004085;
+}
+
+/* Estilo Botão Excluir */
+.btn-delete {
+    background-color: #ffebee; /* Vermelho claro */
+    border-color: #ffcdd2;
+    color: #c62828;
+}
+.btn-delete:hover {
+    background-color: #ffdde0;
+    border-color: #ffa4a9;
+    color: #b71c1c;
+}
+
+/* --- Fim dos Estilos para a Linha da Receita --- */

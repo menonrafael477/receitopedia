@@ -1,13 +1,13 @@
 <?php
-    var_dump($_GET);
+    //var_dump($_GET);
     //require('views/login.view.php');
     //require('models/login.model.php');
 
-    require('logout.controller.php');
+    //require('logout.controller.php');
     #require('avaliacao.controller.php');
     #require('comentario.controller.php');
     #require('like.controller.php');
-    require('login.controller.php');
+    //require('login.controller.php');
     #require('logout.controller.php');
     #require('receita.controller.php');
     require('receitopedia.controller.php');//mudei
@@ -27,19 +27,19 @@
         
         echo json_encode("usuario realizou acao");
 
-        var_dump($_SESSION);
+        //var_dump($_SESSION);
         
         switch ($action) {
             # Login controller
             
-            case 'login':
-                $login_controller_event->login_usuario();
-                return  (['status' => 'error', 'message' => "Login: '$action'"]);
+            //case 'login':
+             //   $login_controller_event->login_usuario();
+             //   return  (['status' => 'error', 'message' => "Login: /'$action'"]);
 
             # Logout controller
-            case 'logout':
-                $logout_controller_event->logoff_user();
-                return (['status' => 'error', 'message' => "Logout: '$action'"]);
+            //case 'logout':
+                //$logout_controller_event->logoff_user();
+                //return (['status' => 'error', 'message' => "Logout: '$action'"]);
 
             # Receita controller
             case 'get_receita':

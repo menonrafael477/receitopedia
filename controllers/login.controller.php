@@ -15,8 +15,7 @@ class LoginController {
 
                 #setcookie('cookie', $token, time() + 60 * 60 * 24, '', '', false, true); 
 
-                //header('Location: index.php');
-                return(['status' => 'success', 'token' => $token]);
+                return(['status' => 'success', 'id' => $token]);
             } catch (Exception $e) {
                 return(['status' => 'error', 'message' => $e->getMessage()]);
             }
@@ -26,4 +25,27 @@ class LoginController {
     }
 }
 
+$login_controller = new LoginController();
+
+if(isset($_GET['action_login'])) {
+    $action = $_GET['action_login'];
+    
+    echo json_encode("usuario realizou acao");
+
+    //var_dump($_SESSION);
+    
+    switch ($action) {
+        # Login controller
+        
+        case 'login':
+            $login_controller->login_usuario();
+            return  (['status' => 'error', 'message' => "Login: '$action'"]);
+
+        default:
+            echo json_encode(['status' => 'error', 'message' => "Falha catastrofica: '$action'"]);
+    }
+
+    } else {
+    return (['status' => 'error', 'message' => 'Acao nao definida']);
+}
 ?> 
