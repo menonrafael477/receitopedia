@@ -1,0 +1,262 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif; 
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-header {
+  background-color: #fff; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0 20px; 
+  position: sticky; 
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; 
+  margin: 0 auto; 
+  height: 70px; 
+}
+
+/* Logo */
+.navbar-brand .logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #ff6347; 
+}
+
+/* Container de Busca */
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input[type="search"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px; 
+  font-size: 0.9em;
+  outline: none;
+  min-width: 250px;
+}
+
+.search-container button {
+  padding: 8px 15px;
+  background-color: #ff6347;
+  color: white;
+  border: 1px solid #ff6347;
+  border-left: none; 
+  border-radius: 0 20px 20px 0; 
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.search-container button:hover {
+  background-color: #e0523a;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li {
+  margin-left: 25px; 
+  position: relative; 
+}
+
+.nav-links li a {
+  color: #555;
+  font-weight: 500;
+  padding: 10px 0; 
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: #ff6347;
+}
+
+.dropdown .arrow-down {
+  font-size: 0.7em;
+  margin-left: 4px;
+}
+
+.dropdown-menu {
+  display: none; 
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 10px 0;
+  z-index: 1001; 
+  min-width: 180px; 
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu { 
+  display: block;
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #555;
+  white-space: nowrap; 
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+  color: #ff6347;
+}
+
+/* Ações do Usuário */
+.user-actions {
+  display: flex;
+  align-items: center;
+}
+
+.user-actions .login-link {
+  margin-right: 15px;
+  color: #555;
+  font-weight: 500;
+}
+
+.user-actions .login-link:hover {
+  color: #ff6347;
+}
+
+.user-actions .btn-cadastro {
+  background-color: #28a745; 
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.user-actions .btn-cadastro:hover {
+  background-color: #218838;
+}
+
+/* Botão de Menu Mobile (Hambúrguer) */
+.menu-toggle {
+  display: none; 
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  padding: 10px;
+}
+
+
+@media (max-width: 992px) { 
+  .search-container {
+    display: none; 
+  }
+  .nav-links {
+    font-size: 0.9em;
+  }
+  .nav-links li {
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 768px) { 
+  .navbar {
+    height: 60px;
+  }
+
+  .search-container {
+    display: none;
+  }
+
+  .nav-links,
+  .user-actions {
+    display: none; 
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Altura da navbar */
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px 0;
+  }
+
+  .nav-links.active, 
+  .user-actions.active { 
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu {
+    display: none; 
+  }
+  .dropdown-menu { 
+    position: static; 
+    box-shadow: none;
+    background-color: #f8f8f8; 
+    padding-left: 20px; 
+  }
+  .dropdown-menu li a {
+    padding: 8px 15px;
+  }
+
+  .menu-toggle {
+    display: block; 
+    order: 3; 
+  }
+
+  .user-actions { 
+    flex-direction: column; 
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+  }
+  .user-actions a {
+    margin: 8px 0;
+  }
+  .user-actions .btn-cadastro {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) { 
+    .navbar-brand .logo {
+        font-size: 1.5em;
+    }
+    .search-container input[type="search"] {
+        min-width: 150px; 
+    }
+}
