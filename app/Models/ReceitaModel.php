@@ -36,16 +36,39 @@ class ReceitaModel {
         return $result;
     }
 
-    public function updateRecipe(int $id_post, string $title, string $content_text, string $photo, string $category) : bool {
-        $query = self::$database->prepare("UPDATE receita SET titulo_receita = :title, texto_receita = :content_text, foto_receita = :photo, categoria = :category WHERE id_post = :postId");
+    public function updateRecipe(int $id_post, ?string $title, ?string $content_text, ?string $photo, ?string $category) : bool {
+        $fields = [];
+        $params = [];
+
+        if ($title !== null) {
+            $fields[] = "titulo_receita = :title";
+            $params[':title'] = $title;
+        }
+
+        if ($content_text !== null) {
+            $fields[] = "texto_receita = :content_text";
+            $params[':content_text'] = $content_text;
+        }
+
+        if ($photo !== null) {
+            $fields[] = "foto_receita = :photo";
+            $params[':photo'] = $photo;
+        }
+
+        if ($category !== null) {
+            $fields[] = "categoria = :category";
+            $params[':category'] = $category;
+        }
+
+        if (empty($fields)) {
+            return false;
+        }
+
+        $query_string = "UPDATE receita SET " . implode(', ', $fields) . " WHERE id = :postId";
+        $params[':postId'] = $id_post;
+        $query = self::$database->prepare($query_string);
+        $query->execute($params);
         
-        $query->bindParam(":title", $title, PDO::PARAM_STR);
-        $query->bindParam(":content_text", $content_text, PDO::PARAM_STR);
-        $query->bindParam(":photo", $photo, PDO::PARAM_STR);
-        $query->bindParam(":category", $category, PDO::PARAM_STR);
-        $query->bindParam(":postId", $id_post, PDO::PARAM_INT);
-        
-        $query->execute();
         $result = $query->rowCount() > 0;
         $query->closeCursor();
 

@@ -10,6 +10,7 @@ class ReceitaController {
 
     private function loadBodyRegisterRecipe() {
         $receitas = $this->getAllRecipes();
+        $receita_selecionada = null;
         require_once ADMIN_VIEW;
     }
 
@@ -33,6 +34,17 @@ class ReceitaController {
         $this->loadHeader();
         $this->loadBodyRegisterRecipe();
         $this->loadFooter();
+    }
+
+    public function loadPageAdminUpdate($id) {
+        $this->loadHeader();
+        $this->loadUpdatePage($id);
+        $this->loadFooter();
+    }
+
+    private function loadUpdatePage($id){
+        $receita_selecionada = $this->getRecipeById($id);
+        require ADMIN_VIEW;
     }
 
     private function verificarString($string) : void{
@@ -68,22 +80,25 @@ class ReceitaController {
         }
     }
 
-    public function updateRecipe($id_post, $title, $content_text, $photo, $category) {
+    public function updateRecipe() {
         try {
             $id_post = $_POST['id_post'] ?? null;
             $title = $_POST['title'] ?? null;
             $content_text = $_POST['content_text'] ?? null;
-            $photo = $_POST['photo'] ?? "none";
             $category = $_POST['category'] ?? null;
 
+            $photo_base64 = null;
+
+            if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+                $file_tmp_path = $_FILES['photo']['tmp_name'];
+                $file_content = file_get_contents($file_tmp_path);
+                $photo_base64 = base64_encode($file_content);
+
+            }
             $this->verificarString($id_post);
-            $this->verificarString($title);
-            $this->verificarString($content_text);
-            $this->verificarString($photo);
-            $this->verificarString($category);
             
-            header('Location: /');
-            return $this->receitaModel->updateRecipe($id_post, $title, $content_text, $photo, $category);
+            header('Location: /admin-panel');
+            return $this->receitaModel->updateRecipe($id_post, $title, $content_text, $photo_base64, $category);
         } catch (Exception $e) {
             echo "Erro ao atualizar receita: " . $e->getMessage();
         }

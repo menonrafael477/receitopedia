@@ -13,6 +13,7 @@
     define('CADASTRO_VIEW', __DIR__ . '/../Views/register.view.php');  
     define('RECIPE_VIEW', __DIR__ . '/../Views/recipe.view.php');
     define('ADMIN_VIEW', __DIR__ . '/../Views/admin.view.php'); 
+    define('UPDATE_RECIPE_VIEW', __DIR__ . '/../Views/layouts/update.recipe.layout.php');
     define('LOGIN_VIEW', __DIR__ . '/../Views/login.view.php');   
     define('FOOTER_LAYOUT', __DIR__ . '/../Views/layouts/footer.layout.php');
 

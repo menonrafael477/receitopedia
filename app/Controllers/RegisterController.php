@@ -24,7 +24,7 @@ class RegisterController {
         }
     }
 
-    public function registerUser() {
+    public function register() : bool {
         try {
             $username = $_POST['username'] ?? '';
             $email = $_POST['email'] ?? '';
@@ -34,10 +34,15 @@ class RegisterController {
             $this->verificarString($email);
             $this->verificarString($passwd);
 
-            header('Location: /');
-            $this->registerModel->registerUser($username, $email, $passwd);
+            $result = $this->registerModel->registerUser($username, $email, $passwd);
+            header('Location: /login');
+
+            return $result;
         } catch (Exception $e) {
+            echo "Username: ".$username." email: ".$email." senha: ".$passwd."<br>";
             echo "Erro ao registrar usuário: " . $e->getMessage();
         }
+        return false;
     }
+
 }

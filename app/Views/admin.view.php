@@ -1,3 +1,10 @@
+<?php
+$controller = new LoginController();
+$controller->isAdminByToken();
+
+
+?>
+
     <div class="admin-panel-container">
         <header class="admin-header">
             <h1>Painel Administrativo de Receitas</h1>
@@ -56,7 +63,11 @@
                                 <td><?php echo ($receita->getCategoria()); ?></td>
                                 <td>
                                     
-                                    <a href="/admin-panel/update-recipe" class="btn btn-secondary btn-edit">Editar</a>
+                                    <form action="/admin-panel/update-recipe/<?php echo $receita->getId(); ?>" method="POST" style="display:inline;">
+                                        <input type="hidden" name="_method" value="post">
+                                        <button type="submit" class="btn btn-secondary btn-edit">Editar</button>
+                                    </form>
+
                                     <form action="/admin-panel/delete-recipe/<?php echo $receita->getId(); ?>" method="POST" style="display:inline;">
                                         <input type="hidden" name="_method" value="delete">
                                         <button type="submit" class="btn btn-danger btn-delete" onclick="return confirm('Tem certeza que deseja deletar esta receita?');">Deletar</button>
@@ -77,40 +88,11 @@
                 </table>
             </section>
 
-            <section id="editar-receita-exemplo" class="admin-section">
-                <h2>Editar Receita: <span class="nome-receita-editando">Bolo de Chocolate Fofinho</span></h2>
-                <form action="#link-para-seu-php-atualizar" method="POST" enctype="multipart/form-data" class="admin-form">
-                    <input type="hidden" name="id_receita" value="123">
-                    
-                    <div class="form-group">
-                        <label for="titulo_receita_editar">Título da Receita:</label>
-                        <input type="text" id="titulo_receita_editar" name="titulo_receita" value="Bolo de Chocolate Fofinho" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="texto_receita_editar">Modo de Preparo (Descrição):</label>
-                        <textarea id="texto_receita_editar" name="texto_receita" rows="8" required>Este é o modo de preparo do bolo de chocolate...</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="foto_receita_editar">Nova Foto da Receita (opcional):</label>
-                        <input type="file" id="foto_receita_editar" name="foto_receita" accept="image/*">
-                        <p class="nota-foto">Deixe em branco para manter a foto atual.</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoria_editar">Categoria:</label>
-                        <select id="categoria_editar" name="categoria" required>
-                            <option value="">Selecione uma categoria</option>
-                            <option value="doces" selected>Doces e Sobremesas</option>
-                            <option value="salgados">Salgados e Pratos Principais</option>
-                            <option value="bebidas">Bebidas</option>
-                            <option value="lanches">Lanches</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                        <button type="button" class="btn btn-cancelar">Cancelar Edição</button>
-                    </div>
-                </form>
-            </section>
+            <?php
+                if ($receita_selecionada != null){
+                    require UPDATE_RECIPE_VIEW;
+                }
+            ?>
 
         </main>
 

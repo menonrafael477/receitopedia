@@ -1,3 +1,8 @@
+<?php 
+    $controller = new LoginController();
+    $resultado = $controller->loginBySession(); //Retorna true ou false.
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -31,10 +36,20 @@
                 </li>
                 <li><a href="/contato">Contato</a></li>
             </ul>
-            <div class="user-actions">
-                <a href="/login" class="login-link">Login</a>
-                <a href="/cadastro" class="btn-cadastro">Cadastre-se</a>
-            </div>
-            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"> &#9776; </button>
+
+            <?php if ($resultado): ?>
+                <div class="user-info">
+                    <p class="username-welcome">Bem-vindo <span id="username-user"><?php echo $controller->getUserBySession()->get_nome(); ?></span></p>
+                    <a href="/logout" class="btn-logout">Sair</a>
+                </div>
+            <?php else: ?>
+                <div class="user-actions">
+                    <a href="/login" class="login-link">Login</a>
+                    <a href="/register" class="btn-cadastro">Cadastre-se</a>
+                </div>
+                <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"> &#9776; </button>
+            <?php endif; ?>
         </nav>
     </header>
+
+    

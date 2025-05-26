@@ -32,8 +32,16 @@ class Routes {
         self::get('/category/{category}', 'HomeController@loadPageByCategory'); 
         self::post('/search-form', 'HomeController@loadSearchButton');
 
+        self::get('/assets/background.png', null);
+
+        // User controller - GET
         self::get('/register', 'RegisterController@loadPageContent');
         self::get('/login', 'LoginController@loadPageContent');
+        
+        // User controller - POST
+        self::post('/register','RegisterController@register');
+        self::post('/login','LoginController@login');
+        self::get('/logout', 'LoginController@logout');
 
         self::get('/recipe/{id}', 'ReceitaController@loadPageContentRecipe');
 
@@ -41,7 +49,8 @@ class Routes {
         
         // requisições
         self::post('/admin-panel/create-recipe', 'ReceitaController@createRecipe');
-        self::put('/admin-panel/update-recipe', 'ReceitaController@updateRecipe');
+        self::post('/admin-panel/update-recipe/{id}', 'ReceitaController@loadPageAdminUpdate');
+        self::post('/admin-panel/send-update', 'ReceitaController@updateRecipe');
         self::delete('/admin-panel/delete-recipe/{id}', 'ReceitaController@deleteRecipe');
 
         // start!

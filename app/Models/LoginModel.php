@@ -77,12 +77,14 @@ class LoginModel {
     public function login(string $email, string $senha, string $token): bool {
         $isAdmin = false;
     
-        $statement = self::$database->prepare("SELECT nome, id FROM usuario WHERE email = :email AND senha = :senha");
+        $statement = self::$database->prepare("SELECT nome, id, isAdmin FROM usuario WHERE email = :email AND senha = :senha");
         $statement->bindParam(":email", $email, PDO::PARAM_STR);
         $statement->bindParam(":senha", $senha, PDO::PARAM_STR);
         $statement->execute();
-        
+
         $usuario = $statement->fetch(PDO::FETCH_ASSOC);
+
+        $isAdmin = $usuario['isAdmin'];
         $statement->closeCursor();
     
         if ($usuario) {
@@ -96,7 +98,7 @@ class LoginModel {
     }
 
     public function getUsuarioPorId(int $id_usuario) {
-        $statement = self::$database->prepare("SELECT nome, email FROM usuario WHERE id = :id_usuario");
+        $statement = self::$database->prepare("SELECT nome, email, isAdmin FROM usuario WHERE id = :id_usuario");
         $statement->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
         $statement->execute();
 
@@ -128,10 +130,29 @@ class LoginModel {
         $dados_usuario = $this->getUsuarioPorId($id_usuario);
 
         if ($dados_usuario) {
-            return new Usuario($id_usuario, $dados_usuario['nome'], $dados_usuario['email']);
+            return new Usuario($id_usuario, $dados_usuario['nome'], $dados_usuario['email'], $dados_usuario['isAdmin']);
         }
 
         throw new Exception("Usuário associado ao token não encontrado (ID: " . $id_usuario . ").");
+    }
+
+    private function removerToken(int $id_usuario): void {
+        try {
+            $statement = self::$database->prepare("DELETE FROM sessions WHERE id_usuario = :id_usuario");
+            
+            $statement->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+            
+            $statement->execute();
+            $statement->closeCursor();
+
+        } catch (PDOException $erro) {
+            throw new Exception("Não foi possível remover o token do banco de dados, falha no logoff.");
+        }
+    }
+
+    public function logoff(int $id_usuario) : bool {
+        $this->removerToken($id_usuario);
+        return true;
     }
 
 }

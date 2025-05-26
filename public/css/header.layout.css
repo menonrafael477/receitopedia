@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100%;
   font-family: Arial, sans-serif; 
   background-color: #f9f9f9;
   color: #333;
@@ -138,6 +139,11 @@ ul {
   align-items: center;
 }
 
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
 .user-actions .login-link {
   margin-right: 15px;
   color: #555;
@@ -159,6 +165,27 @@ ul {
 
 .user-actions .btn-cadastro:hover {
   background-color: #218838;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.user-info .btn-logout {
+  margin-right: 15px;
+  color: #555;
+  font-weight: 500;
+}
+
+.user-info .btn-logout:hover {
+  color: #ff6347;
+}
+
+.user-info #username-user {
+  font-weight: 600;
+  color: #ff6347;
 }
 
 .menu-toggle {

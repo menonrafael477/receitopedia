@@ -1,31 +1,35 @@
-<div class="login-container">
-    <h1>Login</h1>
-    <form>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+<div class="login-background">    
+    <img src="assets/background.png" class="form-container"></img>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="passwd" name="passwd" required>
+            </div>
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+        <div class="register-link">
+            <p>Não tem uma conta? <a href="/register">Crie uma aqui</a></p>
         </div>
-        <div class="form-group">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required>
-        </div>
-        <button type="submit" class="btn-login">Entrar</button>
-    </form>
-    <div class="register-link">
-        <p>Não tem uma conta? <a href="#">Crie uma aqui</a></p>
     </div>
 </div>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        color: #333;
+
+    .login-background {
+        width: 100%;
+        height: 93vh;
+        /* background-image: url(assets/background.png); ;
+        background-size: no-repeat;
+        background-position: center; */
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
     }
 
     .login-container {
@@ -36,6 +40,7 @@
         width: 100%;
         max-width: 400px;
         box-sizing: border-box;
+        margin-left: 50vw;
     }
 
     .login-container h1 {
