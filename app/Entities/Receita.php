@@ -47,4 +47,5 @@ class Receita {
         return $this->dislikes;
     }
 }
+
 ?>
