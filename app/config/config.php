@@ -17,4 +17,6 @@
     define('LOGIN_VIEW', __DIR__ . '/../Views/login.view.php');   
     define('FOOTER_LAYOUT', __DIR__ . '/../Views/layouts/footer.layout.php');
 
+    define('GENERIC_ERROR', __DIR__ . '/../Views/generic.error.view.php');
+    define('PAGE_NOT_FOUND', __DIR__ . '/../Views/page.not.found.view.php');
 ?>

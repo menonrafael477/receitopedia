@@ -60,14 +60,14 @@ class LoginController {
         return false;
     }
 
-    public function getUserBySession() : Usuario {
+    public function getUserBySession() : Usuario | null {
         try {
             $token_sessao = $_COOKIE['PHPSESSID'];
             $usuario = $this->loginModel->getUsuarioPorToken($token_sessao);
 
             return $usuario;
         } catch (Exception $e) {
-            echo "Erro ao relizar login por token: " . $e->getMessage();
+            //echo "Erro ao relizar login por token: " . $e->getMessage();
         }
 
         return null;

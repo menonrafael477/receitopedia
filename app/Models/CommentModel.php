@@ -31,7 +31,7 @@ class CommentModel {
         return ($result !== false);
     }
     
-    public function criarComentario(int $id_usuario, int $id_receita, string $texto): bool {
+    public function criarComentario(int $id_receita, int $id_usuario, string $texto): bool {
         $query = self::$database->prepare("INSERT INTO comentarios (id_receita, id_usuario, texto_comentario) VALUES (:id_receita, :id_usuario, :texto)");
         
         $query->bindParam(":id_receita", $id_receita, PDO::PARAM_INT);
@@ -72,11 +72,10 @@ class CommentModel {
 
     public function buscarComentariosPorReceita(int $id_receita): array {
         $query = self::$database->prepare("
-            SELECT comentarios.id, comentarios.texto_comentario, comentarios.data_criacao, usuario.nome AS nome_usuario, comentarios.id_usuario
+            SELECT comentarios.id, comentarios.texto_comentario, usuario.nome AS nome_usuario, comentarios.id_usuario
             FROM comentarios
             JOIN usuario ON comentarios.id_usuario = usuario.id
             WHERE comentarios.id_receita = :id_receita
-            ORDER BY comentarios.data_criacao DESC
         ");
 
         $query->bindParam(":id_receita", $id_receita, PDO::PARAM_INT);

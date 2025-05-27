@@ -8,7 +8,7 @@
                     <a href="/recipe/<?php echo $receita->getId(); ?>"> 
                          <div class="receita-item-card">
                             <div class="receita-imagem-container">
-                                <img src="data:image/png;base64, <?php echo $receita->getFotoReceita(); ?>" alt="Foto de <?php echo $receita->getTituloReceita(); ?>">
+                                <img src="data:image/webp;base64, <?php echo $receita->getFotoReceita(); ?>" alt="Foto de <?php echo $receita->getTituloReceita(); ?>">
                             </div>
                             <div class="receita-conteudo">
                                 <h3 class="receita-titulo">

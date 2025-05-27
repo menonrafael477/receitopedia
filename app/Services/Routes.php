@@ -1,7 +1,10 @@
 <?php 
 
 use Pecee\SimpleRouter\SimpleRouter as SimpleRouter;
-   
+
+use Pecee\Http\Request;
+use Pecee\SimpleRouter\Exceptions\NotFoundHttpException;
+
 class Routes {
     
     private static function get(string $url, $callback) {
@@ -24,6 +27,10 @@ class Routes {
         SimpleRouter::start();
     }
 
+    private static function error($callback) {
+        SimpleRouter::error($callback);
+    }
+
     public static function defineRoutes() {
         
         // páginas
@@ -42,9 +49,7 @@ class Routes {
         self::post('/register','RegisterController@register');
         self::post('/login','LoginController@login');
         self::get('/logout', 'LoginController@logout');
-
         self::get('/recipe/{id}', 'ReceitaController@loadPageContentRecipe');
-
         self::get('/admin-panel', 'ReceitaController@loadPageContentRegisterRecipe');
         
         // requisições
@@ -52,6 +57,25 @@ class Routes {
         self::post('/admin-panel/update-recipe/{id}', 'ReceitaController@loadPageAdminUpdate');
         self::post('/admin-panel/send-update', 'ReceitaController@updateRecipe');
         self::delete('/admin-panel/delete-recipe/{id}', 'ReceitaController@deleteRecipe');
+
+        // like e comentários
+        self::post('/recipe/{id}/comment', 'CommentController@criarComentario');
+        self::post('/recipe/{id}/like', 'LikeController@addLike');
+        self::post('/recipe/{id}/dislike', 'LikeController@addDislike');
+
+        self::error(function(Request $request, \Exception $exception) {
+            switch(true) {
+                case $exception instanceof NotFoundHttpException:
+                    $errorController = new ErrorController();
+                    $errorController->loadPageNotFound();
+                    break;
+                    
+                default:
+                    $errorController = new ErrorController();
+                    $errorController->loadGenericError();
+                    break;
+            }
+        });
 
         // start!
         self::start(); 

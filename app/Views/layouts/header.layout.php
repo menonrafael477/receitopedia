@@ -34,7 +34,7 @@
                         <li><a href="/category/vegetarianas">Vegetarianas</a></li>
                     </ul>
                 </li>
-                <li><a href="/contato">Contato</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Contato</a></li>
             </ul>
 
             <?php if ($resultado): ?>
