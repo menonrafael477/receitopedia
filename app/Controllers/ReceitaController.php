@@ -72,9 +72,10 @@ class ReceitaController {
             $this->verificarString($content_text);
             $this->verificarString($photo_base64);
             $this->verificarString($category);
-            
+            $result = $this->receitaModel->createRecipe($title, $content_text, $photo_base64, $category);
             header('Location: /admin-panel');
-            return $this->receitaModel->createRecipe($title, $content_text, $photo_base64, $category);
+            echo "CRIOU RECEITA!";
+            return $result;
         } catch (Exception $e) {
             echo "Erro ao criar receita: " . $e->getMessage();
         }

@@ -37,7 +37,7 @@ class LoginModel {
             $statement->closeCursor();
 
         } catch (PDOException $erro) {
-            throw new Exception("Não foi possível inserir token no banco de dados, falha na operação.");
+            throw new Exception("Não foi possível inserir token no banco de dados, falha na operação. Erro: ".$erro->getMessage());
         }
     }
 
