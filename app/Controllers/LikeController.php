@@ -15,16 +15,27 @@ class LikeController {
         try {
             $loginController = new LoginController();
             $user = $loginController->getUserBySession();
-            $id_user = $user->get_id();
 
-            if ($this->likeModel->like($id_user, $id_post)) {
-                header('Location: /recipe/' . $id_post);
-                return true;
+            if ($user) {
+                $id_user = $user->get_id();
+
+                if ($this->likeModel->like($id_user, $id_post)) {
+                    header('Location: /recipe/' . $id_post);
+                    return true;
+                } else {
+                    echo "Erro: Não foi possível processar o seu like. Por favor, tente novamente.";
+                    return false;
+                }
             } else {
-                echo "Erro: Não foi possível processar o seu like. Por favor, tente novamente.";
-                return false;
+                //Dar load em uma div que fiz para logar ou registrar
+                header('Location: /login');
+                return true;
             }
+
+
         } catch(Exception $erro){
+
+            //new ReceitaController()->loadPageContentRecipe($id_post);
             echo "Opa, falha catastrófica! ".$erro->getMessage();
             return false;
         }
@@ -34,15 +45,25 @@ class LikeController {
         try {
             $loginController = new LoginController();
             $user = $loginController->getUserBySession();
-            $id_user = $user->get_id();
 
-            if ($this->likeModel->dislike($id_user, $id_post)) {
-                header('Location: /recipe/' . $id_post);
-                return true;
+            if ($user != null) {
+                $id_user = $user->get_id();
+
+                if ($this->likeModel->dislike($id_user, $id_post)) {
+                    header('Location: /recipe/' . $id_post);
+                    return true;
+                } else {
+
+                    //new ReceitaController()->loadPageContentRecipe($id_post);
+                    echo "Erro: Não foi possível processar o seu dislike. Por favor, tente novamente. (Verifique se a coluna no DB aceita negativos)";
+                    return false;
+                }
             } else {
-                echo "Erro: Não foi possível processar o seu dislike. Por favor, tente novamente. (Verifique se a coluna no DB aceita negativos)";
-                return false;
+                //Dar load em uma div que fiz para logar ou registrar
+                header('Location: /login');
+                return true;
             }
+
         } catch(Exception $erro){
             echo "Opa, falha catastrófica! ".$erro->getMessage();
             return false;
