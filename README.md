@@ -21,7 +21,7 @@ Colocar receitopedia-main dentro de /xampp/htdocs
 
 ## Etapa 2
 
-Criar o banco de dados no PHPMyAdmin ([**link Notion**](https://www.notion.so/Sistema-de-Culin-ria-Receitop-dia-1e1a7e6b6a8780eaa953d0828aee098a)) / CREATE DATABASE receitopedia; \
+Criar o banco de dados no PHPMyAdmin ([**Notion**](https://www.notion.so/Sistema-de-Culin-ria-Receitop-dia-1e1a7e6b6a8780eaa953d0828aee098a)) / CREATE DATABASE receitopedia; \
 Alterar no httpd.conf: 
  - AllowOverride None para AllowOverride All (CTRL + F)
  - DocumentRoot "/xampp/htdocs" para DocumentRoot "/xampp/htdocs/receitopedia-main/public"
