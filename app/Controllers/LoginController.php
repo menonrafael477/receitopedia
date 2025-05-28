@@ -32,13 +32,16 @@ class LoginController {
 
             $token_sessao = $_COOKIE['PHPSESSID'];
 
-            $this->verificarString($email);
-            $this->verificarString($passwd);
-            
-            $resultado = $this->loginModel->login($email,$passwd,$token_sessao);
+            if ($token_sessao != null){
+                $this->verificarString($email);
+                $this->verificarString($passwd);
+                
+                $resultado = $this->loginModel->login($email,$passwd,$token_sessao);
+    
+                header('Location: /');
+                return $resultado;
+            }
 
-            header('Location: /');
-            return $resultado;
         } catch (Exception $e) {
             echo "SESSAO: ". $token_sessao . "<br>";
             echo "Erro ao relizar login: " . $e->getMessage();
@@ -49,12 +52,19 @@ class LoginController {
 
     public function loginBySession() : bool{
         try {
-            $token_sessao = $_COOKIE['PHPSESSID'];
-            $resultado = $this->loginModel->verificarToken($token_sessao);
 
-            return $resultado;
+            $token_sessao = null;
+
+            if ($_COOKIE != null){
+                $token_sessao = $_COOKIE['PHPSESSID'];
+            }
+
+            if ($token_sessao != null){
+                $resultado = $this->loginModel->verificarToken($token_sessao);
+                return $resultado;
+            }
         } catch (Exception $e) {
-            echo "Erro ao relizar login por token: " . $e->getMessage();
+            echo "Status da sessão: ".session_status()."<b>Erro ao relizar login por token: " . $e->getMessage();
         }
 
         return false;
@@ -63,9 +73,12 @@ class LoginController {
     public function getUserBySession() : Usuario | null {
         try {
             $token_sessao = $_COOKIE['PHPSESSID'];
-            $usuario = $this->loginModel->getUsuarioPorToken($token_sessao);
 
-            return $usuario;
+            if ($token_sessao != null){
+                $usuario = $this->loginModel->getUsuarioPorToken($token_sessao);
+                return $usuario;
+            }
+
         } catch (Exception $e) {
             //echo "Erro ao relizar login por token: " . $e->getMessage();
         }
@@ -78,7 +91,10 @@ class LoginController {
 
         try {
             $token_sessao = $_COOKIE['PHPSESSID'];
-            $result = $this->loginModel->isAdminPorToken($token_sessao);
+
+            if ($token_sessao != null) {
+                $result = $this->loginModel->isAdminPorToken($token_sessao);
+            }
  
         } catch (Exception $e) {
             echo "Erro ao verificar administrador, redirecionando... erro: " . $e->getMessage();
@@ -96,11 +112,14 @@ class LoginController {
         try {
             $token_sessao = $_COOKIE['PHPSESSID'];
 
-            $usuario = $this->loginModel->getUsuarioPorToken($token_sessao);
-            $this->loginModel->logoff($usuario->get_id());
+            if($token_sessao!=null){
+                $usuario = $this->loginModel->getUsuarioPorToken($token_sessao);
+                $this->loginModel->logoff($usuario->get_id());
+    
+                header('Location: /');
+                return true;
+            }
 
-            header('Location: /');
-            return true;
         } catch (Exception $e) {
             echo "Erro ao relizar login por token: " . $e->getMessage();
         }

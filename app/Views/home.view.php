@@ -1,4 +1,3 @@
-
         <div class="container-pagina-receitas">
             <div class="div-lista-receitas">
                 <?php
