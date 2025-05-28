@@ -29,8 +29,8 @@ Alterar no httpd.conf: \
 ## Etapa 3
 
 No terminal, acessar o diretório do receitopedia-main \
-Comandos: \\
-  composer init /
+Comandos: <br><BR>
+  composer init \
     - Package name: [ENTER] \
     - Description: [ENTER] \
     - Author: n ou [ENTER} \
