@@ -72,7 +72,11 @@ class LoginController {
 
     public function getUserBySession() : Usuario | null {
         try {
-            $token_sessao = $_COOKIE['PHPSESSID'];
+            $token_sessao = null;
+
+            if ($_COOKIE != null){
+                $token_sessao = $_COOKIE['PHPSESSID'];
+            }
 
             if ($token_sessao != null){
                 $usuario = $this->loginModel->getUsuarioPorToken($token_sessao);
@@ -90,7 +94,11 @@ class LoginController {
         $result = null;
 
         try {
-            $token_sessao = $_COOKIE['PHPSESSID'];
+            $token_sessao = null;
+
+            if ($_COOKIE != null){
+                $token_sessao = $_COOKIE['PHPSESSID'];
+            }
 
             if ($token_sessao != null) {
                 $result = $this->loginModel->isAdminPorToken($token_sessao);
@@ -110,7 +118,11 @@ class LoginController {
 
     public function logout() : bool {
         try {
-            $token_sessao = $_COOKIE['PHPSESSID'];
+            $token_sessao = null;
+
+            if ($_COOKIE != null){
+                $token_sessao = $_COOKIE['PHPSESSID'];
+            }
 
             if($token_sessao!=null){
                 $usuario = $this->loginModel->getUsuarioPorToken($token_sessao);
