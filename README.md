@@ -56,6 +56,10 @@ No arquivo composer.json, colar depois do require:
 
 composer dump-autoload
 
+# Acesso
+
+Digite localhost no navegador \
+Para adicionar receitas, cadastre um usuário, vá à tabela usuarios no PHPMyAdmin e mude a propriedade isAdmin para 1 no usuário desejado. Depois, acesse: localhost/admin-panel
 
 
 
