@@ -31,8 +31,8 @@ Alterar no httpd.conf: \
 No terminal, acessar o diretório do receitopedia-main \
 Comandos: <br><BR>
   composer init \
-    - Package name: [ENTER] \
-    - Description: [ENTER] \
+    - Package name: [ENTER] 
+    - Description: [ENTER] 
     - Author: n ou [ENTER} \
     - Minimum Stability: [ENTER] \
     - Package Type: [ENTER] \
