@@ -43,6 +43,7 @@ composer init \
 - Dev dependencies (require interactively: [ENTER] \
 - Search for a package: [ENTER] \
 - Add PSR-4: Autoload mapping: n \
+  
 composer install \
 composer require pecee/simple-router \
 
