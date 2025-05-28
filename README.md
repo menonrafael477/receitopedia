@@ -44,7 +44,7 @@ composer init
 - Search for a package: [ENTER] 
 - Add PSR-4: Autoload mapping: n 
   
-composer install 
+composer install \
 composer require pecee/simple-router 
 
 No arquivo composer.json, colar depois do require:
