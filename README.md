@@ -31,19 +31,19 @@ Alterar no httpd.conf: \
 No terminal, acessar o diretório do receitopedia-main \
 Comandos: \
   composer init /
-    - Package name: [ENTER]
-    - Description: [ENTER]
-    - Author: n ou [ENTER}
-    - Minimum Stability: [ENTER]
-    - Package Type: [ENTER]
-    - License: [ENTER]
-    - Dependencies (require) interactively [ENTER]
-    - Search for a package: [ENTER]
-    - Dev dependencies (require interactively: [ENTER]
-    - Search for a package: [ENTER]
-    - Add PSR-4: Autoload mapping: n
-  composer install
-  composer require pecee/simple-router
+    - Package name: [ENTER] \
+    - Description: [ENTER] \
+    - Author: n ou [ENTER} \
+    - Minimum Stability: [ENTER] \
+    - Package Type: [ENTER] \
+    - License: [ENTER] \
+    - Dependencies (require) interactively [ENTER] \
+    - Search for a package: [ENTER] \
+    - Dev dependencies (require interactively: [ENTER] \
+    - Search for a package: [ENTER] \
+    - Add PSR-4: Autoload mapping: n \
+  composer install \
+  composer require pecee/simple-router \
 
 No arquivo composer.json, colar depois do require:
 
