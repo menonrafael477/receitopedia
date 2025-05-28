@@ -17,7 +17,7 @@ Requisitos:
  
 Download XAMPP (Windows, Linux, macOS): https://www.apachefriends.org/pt_br/download.html \
 Download Composer (Windows, Linux, macOS): https://getcomposer.org/download/ \
-Colocar receitopedia-main dentro de /xampp/htdocs \
+Colocar receitopedia-main dentro de /xampp/htdocs 
 
 ## Etapa 2
 
