@@ -1,9 +1,9 @@
 # Receitopédia
 
 Criadores:<br>
-https://github.com/Yan-Jardim-Leal<br>
-https://github.com/menonrafael477 <br>
-https://github.com/gbcapri<br><br>
+[Yan Jardim Leal](https://github.com/Yan-Jardim-Leal)<br>
+[Rafael Adonis Menon](https://github.com/menonrafael477)<br>
+[Gabriel Breda Capri](https://github.com/gbcapri)<br><br>
 Notion: [Receitopédia](https://www.notion.so/Sistema-de-Culin-ria-Receitop-dia-1e1a7e6b6a8780eaa953d0828aee098a)
 
 # Instalação:
@@ -15,8 +15,8 @@ Requisitos:
 
 ## Etapa 1
  
-Download XAMPP (Windows, Linux, macOS): https://www.apachefriends.org/pt_br/download.html \
-Download Composer (Windows, Linux, macOS): https://getcomposer.org/download/ \
+[Download XAMPP (Windows, Linux, macOS)](https://www.apachefriends.org/pt_br/download.html) \
+[Download Composer (Windows, Linux, macOS)](https://getcomposer.org/download)/ \
 Colocar receitopedia-main dentro de /xampp/htdocs 
 
 ## Etapa 2
