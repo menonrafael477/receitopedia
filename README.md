@@ -31,7 +31,7 @@ Alterar no httpd.conf: \
 No terminal, acessar o diretório do receitopedia-main \
 Comandos: <br><br>
 
-composer init \
+composer init 
 - Package name: [ENTER] 
 - Description: [ENTER] 
 - Author: n ou [ENTER} 
@@ -44,8 +44,8 @@ composer init \
 - Search for a package: [ENTER] 
 - Add PSR-4: Autoload mapping: n 
   
-composer install \
-composer require pecee/simple-router \
+composer install 
+composer require pecee/simple-router 
 
 No arquivo composer.json, colar depois do require:
 
