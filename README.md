@@ -9,6 +9,29 @@ Link do notion: https://www.notion.so/Sistema-de-Culin-ria-Receitop-dia-1e1a7e6b
 # Instalação:
 
 Requisitos:
-  - XAMPP
+  - XAMPP / Apache e MySQL
   - Composer
   - Pecee Simple-Router
+
+## Etapa 1
+ 
+Download XAMPP (Windows, Linux, macOS): https://www.apachefriends.org/pt_br/download.html
+Download Composer (Windows, Linux, macOS): https://getcomposer.org/download/
+Colocar receitopedia-main dentro de /xampp/htdocs
+
+## Etapa 2
+
+Criar o banco de dados no PHPMyAdmin (link Notion)
+Alterar no httpd.conf:
+  - AllowOverride None para AllowOverride All (CTRL + F)
+  - DocumentRoot "C:/xampp/htdocs" para DocumentRoot "C:/xampp/htdocs/receitopedia-main/public"
+
+## Etapa 3
+
+No terminal, acessar o diretório do receitopedia-main
+Comandos:
+  - composer init
+    - 
+
+
+
